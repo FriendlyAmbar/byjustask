@@ -1,0 +1,37 @@
+.jobSearchPage .card {
+    width: 85%;
+    margin: auto;
+}
+
+.jobSearchPage .card h2 {
+    background: #424242;
+    color: white;
+}
+
+.jobSearchPage .card .searchGird button {
+    color: white;
+    font-size: 20px;
+    padding: 10px 35px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+.jobSearchPage .card .jobs {
+    box-shadow: 0px 0px 20px 2px #e2e2e2;
+    border-radius: 20px;
+    padding: 10px 15px;
+    height: 375px;
+}
+
+.jobSearchPage .card .jobs p {
+    margin-bottom: .2rem;
+}
+
+.jobSearchPage .jobListingCard {
+  
+}
+
+.jobSearchPage .jobListingCard .fixedRow {
+    height: 600px;
+    overflow-y: scroll;
+}

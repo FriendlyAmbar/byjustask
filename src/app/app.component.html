@@ -1,20 +1,67 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="jobSearchPage">
+  <div class="card">
+    <h2 class="text-center p-3">Search Jobs</h2>
+    <div class="row p-3 searchGird">
+      <div class="col-md-5">
+        <div class="form-group">
+          <label for="email">Experience:</label>
+          <select class="form-control" id="sel1" (change)=(sortByExperience($event))>
+            <option value="all" selected>Select Experience</option>
+            <option value="Fresher">Fresher</option>
+            <option value="0 to 2 Yrs">Intermediate</option>
+            <option value="8-13 yrs">Professional</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group">
+          <label for="email">Location:</label>
+          <select class="form-control" id="sel2" (change)=(sortByLocation($event))>
+            <option value="all" selected>Select Location</option>
+            <option *ngFor="let location of locations">{{location}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-2 text-center m-auto">
+        <button class="btn btn-success" (click)=(searchData())>Search</button>
+      </div>
+    </div>
+  </div>
+  <div class="card my-5 jobListingCard">
+    <h2 class="text-center p-3">Jobs Listings</h2>
+    <div class="row p-3 m-0">
+      <div class="col-md-2">
+        <input type="text" class="form-control" [(ngModel)]="companyFilter.companyname"
+          placeholder="Filter by Company Name">
+      </div>
+      <div class="col-md-10">
+        <div class="row m-0 mb-3">
+          <div class="col-md-5">
+            <p>Total Jobs: {{jobs.length}}</p>
+          </div>
+          <div class="col-md-7 text-right m-auto">
+            <button class="btn btn-secondary mr-2">Sort by Location</button>
+            <button class="btn btn-secondary ml-2">Sort by Experience</button>
+          </div>
+        </div>
+        <div class="row fixedRow m-0">
+          <div class="col-md-6 col-lg-4 my-2" *ngFor="let jobs of jobs | filterBy: companyFilter ; let i = index">
+            <div class="jobs">
+              <p>JobTitle: {{jobs.title}}</p>
+              <p>Company: {{jobs.companyname}}</p>
+              <p>Location: {{jobs.location}}</p>
+              <p>Salary: {{jobs.salary}}</p>
+              <p>Type: {{jobs.type}}</p>
+              <p>Start Date: {{jobs.startdate}}</p>
+              <p>End Date: {{jobs.enddate}}</p>
+              <p>Apply Link: {{jobs.applylink}}</p>
+              <p>Source: {{jobs.source}}</p>
+            </div>
+          </div>
+          <h1 *ngIf="(jobs | filterBy: companyFilter).length === 0">No Data Found</h1>
+        </div>
 
+      </div>
+    </div>
+  </div>
+</div>
